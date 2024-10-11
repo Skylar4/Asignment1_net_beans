@@ -15,4 +15,11 @@ public class Cylinder extends Shape
     public void setRadius(double radius) {
         this.radius = radius;
     }
+    public double basearea(){
+        return Math.PI *  Math.pow(this.radius, 2 );
+    }
+    public double Volume(){
+        double volume = (Math.PI *  Math.pow(this.radius, 2 ) * this.height);
+        return volume;
+    }
 }

@@ -8,7 +8,7 @@ package shapes;
  *
  * @author jones
  */
-public class Shape  {
+public class Shape implements Comparable<Shape>  {
     double height;
 
     public Shape(double height) {
@@ -19,6 +19,9 @@ public class Shape  {
     public double calcVolume(){
         return 0.00;
     }
+    public double calcBaseArea(){
+        return 0.00;
+    }
 
     public double getHeight() {
         return height;
@@ -26,6 +29,12 @@ public class Shape  {
 
     public void setHeight(double height) {
         this.height = height;
+        
+    }
+    public int compareTo(Shape shape2){
+        if (this.getHeight() > shape2.getHeight() ) return 1;
+        else if  (this.getHeight() < shape2.getHeight()) return -1;
+        else return 0;
     }
     
 }

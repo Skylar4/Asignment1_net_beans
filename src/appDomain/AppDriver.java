@@ -1,27 +1,53 @@
 package appDomain;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class AppDriver
 {
 
 	public static void main( String[] args )
 	{
-		// TODO Auto-generated method stub
+             try{
+                 
+                 String type = " ";
 
-		// refer to demo001 BasicFileIO.java for a simple example on how to
-		// read data from a text file
+                //creating the file class to be read
+                File txt = new File("");
+                //creatng the scanner to read the file
+                Scanner scanner = new Scanner(txt);
+                
+                switch(type){
+                    //for each shape type have the constructors, simmilar to the appliance assignment. 
+                    case "Cone"
 
-		// refer to demo01 Test.java for an example on how to parse command
-		// line arguments and benchmarking tests
+                            :
+                    case "Cylinder":
+                        
+                        
+                    case "Pyramid":  
+                        
+                        
+                     case "OctogonalPrism": 
+                         
+                         
+                    case "SquarePrism":
+                        
+                        
+                    case "TriangularPrism":   
+                        
+                        
+                    case "PentagonalPrism":                       
+                  
+                }
+                        
 
-		// refer to demo02 Student.java for comparable implementation, and
-		// NameCompare.java or GradeCompare for comparator implementations
-
-		// refer to demo02 KittySort.java on how to use a custom sorting
-		// algorithm on a list of comparables to sort using either the
-		// natural order (comparable) or other orders (comparators)
-
-		// refer to demo03 OfficeManager.java on how to create specific
-		// objects using reflection from a String
+             }
+                catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();           
+           
 	}
 
 }

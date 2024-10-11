@@ -16,4 +16,14 @@ public class PentagonalPrism extends Shape
     public void setSide(double side) {
         this.side = side;
     }
+    public double baseArea(){
+        double angleInRadians = Math.toRadians(54); 
+        double area = (5 * Math.pow(this.side, 2) * Math.tan(angleInRadians)) / 4; 
+        return area; 
+    }
+    public double Volume(){
+        double volume = this.baseArea() * this.height;
+        return volume;
+    }
+
 }
