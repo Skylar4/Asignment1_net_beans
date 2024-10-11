@@ -16,4 +16,13 @@ public class TriangularPrism extends Shape
     public void setSide(double side) {
         this.side = side;
     }
+    public double baseArea(){
+        double area = (Math.pow(this.side, 2) * Math.sqrt(3)) / 4;
+        return area;
+    }
+    
+     public double Volume(){
+        double volume = this.baseArea() * this.height;
+        return volume;   
+}
 }
