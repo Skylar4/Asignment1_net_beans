@@ -17,6 +17,7 @@ public class SquarePrism extends Shape
         this.side = side;
     }
     public double basearea(){
+        return Math.pow(this.side, 2 );
         
     }
      public double Volume(){
