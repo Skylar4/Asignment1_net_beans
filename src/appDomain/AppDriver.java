@@ -1,32 +1,58 @@
 package appDomain;
-import shapes.*;
+
+import polygons.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import utilities.Sort;
 
 public class AppDriver {
 
     public static void main(String[] args) {
         Shape[] shapes = null;
+
+        //Command line arguments
+        //String fileName = null;
+//        String compareType = null;
+//        String sortType = null;
+        // Comment out to use command line; for testing only
+        String fileName = "shapes2.txt";
+        String compareType = "v";
+        String sortType = "m";
+
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].startsWith("-f") || args[i].startsWith("-F")) {
+                fileName = args[i].substring(2);
+            } else if (args[i].startsWith("-t") || args[i].startsWith("-T")) {
+                compareType = args[i].substring(2).toLowerCase();
+            } else if (args[i].startsWith("-s") || args[i].startsWith("-S")) {
+                sortType = args[i].substring(2).toLowerCase();
+            }
+        }
+
+        if (fileName == null || compareType == null || sortType == null) {
+            System.out.println("Usage: java -jar Sort.jar -f<file_name> -t<compare_type> -s<sort_type>");
+            //return;
+        }
+
         try {
             //creating the file class to be read
             int size;
-            File txt = new File("shapes2.txt");
+            File txt = new File(fileName);
             //creatng the scanner to read the file
             Scanner scanner = new Scanner(txt);
-                if (scanner.hasNextLine()) {
+            if (scanner.hasNextLine()) {
                 String firstLine = scanner.nextLine();
-                size = Integer.parseInt(firstLine.trim()); 
+                size = Integer.parseInt(firstLine.trim());
                 shapes = new Shape[size];
             }
 
-                int index = 0;
+            int index = 0;
             while (index < shapes.length && scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 //setting the delimter to be a space
                 String delim = "[ ]";
-                String[] shape = data.split(delim);            
+                String[] shape = data.split(delim);
                 //getting the first digit to know what kind of appliance to make. 
                 String shapeType = shape[0];
                 switch (shapeType) {
@@ -34,7 +60,7 @@ public class AppDriver {
                     case "Cone":
                         double coneheight = Double.parseDouble(shape[1]);
                         double coneradius = Double.parseDouble(shape[2]);
-                        Cone cone = new Cone(coneradius,coneheight);
+                        Cone cone = new Cone(coneradius, coneheight);
                         shapes[index] = cone;
                         break;
 
@@ -44,49 +70,46 @@ public class AppDriver {
                         Cylinder cylinder = new Cylinder(CylRadius, CylHeight);
                         shapes[index] = cylinder;
                         break;
-                        
 
                     case "Pyramid":
                         double pyrHeight = Double.parseDouble(shape[1]);
                         double PyrSide = Double.parseDouble(shape[2]);
                         Pyramid pyramid = new Pyramid(PyrSide, pyrHeight);
-                        shapes[index] = pyramid;                         
+                        shapes[index] = pyramid;
                         break;
-                        
 
                     case "OctagonalPrism":
                         double OctHeight = Double.parseDouble(shape[1]);
                         double OctSide = Double.parseDouble(shape[2]);
                         OctagonalPrism octogonalPrism = new OctagonalPrism(OctSide, OctHeight);
-                        shapes[index] = octogonalPrism;                         
+                        shapes[index] = octogonalPrism;
                         break;
 
                     case "SquarePrism":
-                        double squareHeight = Double.parseDouble(shape[1]); 
-                        double squareSide = Double.parseDouble(shape[2]);   
-                        SquarePrism squarePrism = new SquarePrism(squareSide, squareHeight);        
-                        shapes[index] = squarePrism;  
-                        
+                        double squareHeight = Double.parseDouble(shape[1]);
+                        double squareSide = Double.parseDouble(shape[2]);
+                        SquarePrism squarePrism = new SquarePrism(squareSide, squareHeight);
+                        shapes[index] = squarePrism;
+
                         break;
 
                     case "TriangularPrism":
-                        double triangleBaseLength = Double.parseDouble(shape[1]); 
+                        double triangleBaseLength = Double.parseDouble(shape[1]);
                         double triangleHeight = Double.parseDouble(shape[2]);
-                        TriangularPrism triangularPrism = new TriangularPrism(triangleBaseLength, triangleHeight); 
-                        shapes[index] = triangularPrism;                        
-                        
+                        TriangularPrism triangularPrism = new TriangularPrism(triangleBaseLength, triangleHeight);
+                        shapes[index] = triangularPrism;
+
                         break;
 
-
                     case "PentagonalPrism":
-                        double pentagonBaseLength = Double.parseDouble(shape[1]); 
+                        double pentagonBaseLength = Double.parseDouble(shape[1]);
                         double pentagonHeight = Double.parseDouble(shape[2]);
-                        PentagonalPrism pentagonalPrism = new PentagonalPrism(pentagonBaseLength, pentagonHeight); 
+                        PentagonalPrism pentagonalPrism = new PentagonalPrism(pentagonBaseLength, pentagonHeight);
                         shapes[index] = pentagonalPrism;
                         break;
                     default:
                         System.out.println("Unrecognized shape type: " + shapeType);
-                    break;
+                        break;
                 }
                 index++;
 
@@ -95,9 +118,32 @@ public class AppDriver {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        for (Shape shap : shapes){
-                        System.out.println(shap.getHeight());
+        // Start counter
+
+        // Sort elements based on the compare type 
+        Shape[] sortedShape = null;
+        if (sortType == "m") {
+            sortedShape = Sort.mergeSort(compareType, shapes, 0, shapes.length - 1);
         }
+        // add more sorting algorithms here
+
+        // print the elements
+        for (int i = 0; i < sortedShape.length; i++) {
+            Shape shape = sortedShape[i];
+            if (i == 0) {
+                System.out.println("First Element is: " + shape.toString(compareType));
+            } else if (i == sortedShape.length - 2) {
+                System.out.println("Second Last element is: " + shape.toString(compareType));
+            } else if (i == sortedShape.length - 1) {
+                System.out.println("Last element is: " + shape.toString(compareType));
+            } else if (i % 10 == 0) // update this for bigger test data; current using 10 for testing
+            {
+                System.out.println(i + "-th element is: " + shape.toString(compareType));
+            }
+        }
+
+        // TODO: End Counter
+        System.out.println("b run time was: ");
 
     }
 }
