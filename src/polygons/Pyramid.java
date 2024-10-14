@@ -1,5 +1,7 @@
 package polygons;
 
+import java.text.DecimalFormat;
+
 public class Pyramid extends Shape {
 
     double side;
@@ -17,24 +19,27 @@ public class Pyramid extends Shape {
         this.side = side;
     }
 
-    public double baseArea() {
+    @Override
+    public double calcBaseArea() {
         return Math.pow(this.side, 2);
     }
 
-    public double Volume() {
+    @Override
+    public double calcVolume() {
         double volume = (Math.pow(this.side, 2) * this.height) / 3;
         return volume;
     }
 
     @Override
     public String toString(String comparetype) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
         if (comparetype == "v") {
-            return "The " + getClass().getName() + " has a Volume of: " + Volume();
+            return "The " + getClass().getName() + " has a Volume of: " + decimalFormat.format(calcVolume());
         } else if (comparetype == "h") {
             return "The " + getClass().getName() + " has a Height of: " + getHeight();
         } else {
-            return "The " + getClass().getName() + " has a Base Area of: " + baseArea();
+            return "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
         }
-
     }
 }

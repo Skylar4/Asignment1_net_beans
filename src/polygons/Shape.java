@@ -4,23 +4,25 @@
  */
 package polygons;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author jones
  */
-public abstract class Shape implements Comparable<Shape>  {
+public abstract class Shape implements Comparable<Shape> {
+
     double height;
 
     public Shape(double height) {
         this.height = height;
     }
-    
-    
-    public double calcVolume(){
+
+    public double calcVolume() {
         return 0.00;
     }
-    
-    public double calcBaseArea(){
+
+    public double calcBaseArea() {
         return 0.00;
     }
 
@@ -30,29 +32,31 @@ public abstract class Shape implements Comparable<Shape>  {
 
     public void setHeight(double height) {
         this.height = height;
-        
+
     }
-    
+
     @Override
-    public int compareTo(Shape shape2){
-        if (this.getHeight() > shape2.getHeight() ) return 1;
-        else if  (this.getHeight() < shape2.getHeight()) return -1;
-        else return 0;
+    public int compareTo(Shape shape2) {
+        if (this.getHeight() > shape2.getHeight()) {
+            return 1;
+        } else if (this.getHeight() < shape2.getHeight()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
-    
-    public int compare(Shape shape1, Shape shape2){
-        return 0;
-    }
-    
+
     public String toString(String comparetype) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
         if (comparetype == "v") {
-            return "The " + getClass().getName() + " has a Volume of: " + calcVolume();
+            return "The " + getClass().getName() + " has a Volume of: " + decimalFormat.format(calcVolume());
         } else if (comparetype == "h") {
             return "The " + getClass().getName() + " has a Height of: " + getHeight();
         } else {
-            return "The " + getClass().getName() + " has a Base Area of: " + calcBaseArea();
+            return "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
         }
 
     }
-    
+
 }

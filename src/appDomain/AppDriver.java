@@ -3,8 +3,9 @@ package appDomain;
 import polygons.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
-import utilities.Sort;
+import utilities.Merge;
 
 public class AppDriver {
 
@@ -12,13 +13,13 @@ public class AppDriver {
         Shape[] shapes = null;
 
         //Command line arguments
-        //String fileName = null;
-//        String compareType = null;
-//        String sortType = null;
+        String fileName = null;
+        String compareType = null;
+        String sortType = null;
         // Comment out to use command line; for testing only
-        String fileName = "shapes2.txt";
-        String compareType = "v";
-        String sortType = "m";
+//        String fileName = "shapes3.txt";
+//        String compareType = "a";
+//        String sortType = "m";
 
         for (int i = 0; i < args.length; i++) {
             if (args[i].startsWith("-f") || args[i].startsWith("-F")) {
@@ -118,32 +119,37 @@ public class AppDriver {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        // Start counter
 
-        // Sort elements based on the compare type 
+        // Start counter
+        long startTime = System.currentTimeMillis();
+
+        // Merge elements based on the compare type 
         Shape[] sortedShape = null;
         if (sortType == "m") {
-            sortedShape = Sort.mergeSort(compareType, shapes, 0, shapes.length - 1);
+            Merge.mergeSort(compareType, shapes, 0, shapes.length - 1);
         }
-        // add more sorting algorithms here
 
+        // TODO: add more sorting algorithms here
+        //End Counter
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("");
         // print the elements
-        for (int i = 0; i < sortedShape.length; i++) {
-            Shape shape = sortedShape[i];
+        for (int i = 0; i < shapes.length; i++) {
+            Shape shape = shapes[i];
             if (i == 0) {
                 System.out.println("First Element is: " + shape.toString(compareType));
-            } else if (i == sortedShape.length - 2) {
+            } else if (i == shapes.length - 2) {
                 System.out.println("Second Last element is: " + shape.toString(compareType));
-            } else if (i == sortedShape.length - 1) {
+            } else if (i == shapes.length - 1) {
                 System.out.println("Last element is: " + shape.toString(compareType));
-            } else if (i % 10 == 0) // update this for bigger test data; current using 10 for testing
+            } else if (i % 1000 == 0) // update this for bigger test data; current using 10 for testing
             {
                 System.out.println(i + "-th element is: " + shape.toString(compareType));
             }
         }
 
-        // TODO: End Counter
-        System.out.println("b run time was: ");
+        System.out.println("b run time was: " + (endTime - startTime) + " milliseconds");
 
     }
 }
