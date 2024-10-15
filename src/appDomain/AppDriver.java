@@ -3,6 +3,7 @@ import shapes.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import utilities.*;
 
 
 public class AppDriver {
@@ -96,6 +97,12 @@ public class AppDriver {
             e.printStackTrace();
         }
         for (Shape shap : shapes){
+                        System.out.println(shap.getHeight());
+        }
+        SelectionSorter sorter = new SelectionSorter();
+        sorter.selectionSort(shapes);
+
+                for (Shape shap : shapes){
                         System.out.println(shap.getHeight());
         }
 

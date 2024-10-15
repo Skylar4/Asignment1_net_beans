@@ -31,6 +31,7 @@ public class Shape implements Comparable<Shape>  {
         this.height = height;
         
     }
+    @Override
     public int compareTo(Shape shape2){
         if (this.getHeight() > shape2.getHeight() ) return 1;
         else if  (this.getHeight() < shape2.getHeight()) return -1;
