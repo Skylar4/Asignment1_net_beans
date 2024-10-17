@@ -8,6 +8,7 @@ import java.util.Scanner;
 import utilities.bubbleSorter;
 import utilities.Merge;
 import utilities.SelectionSorter;
+import utilities.insertionSort;
 
 public class AppDriver {
 
@@ -21,7 +22,7 @@ public class AppDriver {
         // Comment out to use command line; for testing only
         String fileName = "shapes4.txt";
         String compareType = "h";
-        String sortType = "selection";
+        String sortType = "insertion";
 
         for (int i = 0; i < args.length; i++) {
             if (args[i].startsWith("-f") || args[i].startsWith("-F")) {
@@ -138,7 +139,10 @@ public class AppDriver {
         {
             SelectionSorter.selectionSort(shapes);
         }
-
+        else if (sortType == "insertion")
+        {
+            insertionSort.insertionSort(shapes);
+        }
         // TODO: add more sorting algorithms here
         //End Counter
         long endTime = System.currentTimeMillis();

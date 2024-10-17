@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package utilities;
-import shapes.*;
 
 /**
  *
@@ -12,7 +11,7 @@ import shapes.*;
 public class insertionSort {
        
             
-    public <T extends Comparable<T>> void insertionSort(T[] array){
+    public static <T extends Comparable<T>> void insertionSort(T[] array){
         
         int arraySize = array.length;
         
