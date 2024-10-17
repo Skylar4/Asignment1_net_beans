@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package utilities;
-import shapes.*;
 
 /**
  *
@@ -13,7 +12,7 @@ public class SelectionSorter {
     
     
     
-        public <T extends Comparable<T>>  void selectionSort(T[] array){
+        public static <T extends Comparable<T>>  void selectionSort(T[] array){
         int length = array.length;
         //looping through each index in the array except the last one since its hopefully already in the right spot
         for (int i = 0; i < length -1; i++) {

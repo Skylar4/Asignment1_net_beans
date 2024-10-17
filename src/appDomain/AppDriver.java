@@ -5,8 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
-import sortClasses.bubbleSorter;
+import utilities.bubbleSorter;
 import utilities.Merge;
+import utilities.SelectionSorter;
 
 public class AppDriver {
 
@@ -18,9 +19,9 @@ public class AppDriver {
 //        String compareType = null;
 //        String sortType = null;
         // Comment out to use command line; for testing only
-        String fileName = "shapes3.txt";
+        String fileName = "shapes4.txt";
         String compareType = "h";
-        String sortType = "bubble";
+        String sortType = "selection";
 
         for (int i = 0; i < args.length; i++) {
             if (args[i].startsWith("-f") || args[i].startsWith("-F")) {
@@ -132,6 +133,10 @@ public class AppDriver {
         else if (sortType == "bubble")
         {
             bubbleSorter.bubbleSort(shapes);
+        }
+        else if (sortType == "selection")
+        {
+            SelectionSorter.selectionSort(shapes);
         }
 
         // TODO: add more sorting algorithms here
