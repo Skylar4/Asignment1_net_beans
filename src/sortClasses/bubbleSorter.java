@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package sortClasses;
-import shapes.Shape;
+import polygons.Shape;
 
 /**
  *
@@ -14,14 +14,19 @@ public class bubbleSorter
 {
     public static Shape[] bubbleSort(Shape[] shapesList)
     {
-        for (Shape i : shapesList)
+        int length = shapesList.length;
+        for (int i = 0; i < length - 1; i++)
         {
-            Shape[] temp = new Shape[2];
-            if (i[i].getHeight().compareTo(temp[0]) == 1)
+            for (int j = 0; j < length - i - 1; j++)
             {
-                
+                if(shapesList[j].compareTo(shapesList[j + 1]) == 1)
+                {
+                    Shape temp = shapesList[j];
+                    shapesList[j] = shapesList[j+1];
+                    shapesList[j+1] = temp;
+                }
             }
-        }
+        }       
         return shapesList;
     }
     
