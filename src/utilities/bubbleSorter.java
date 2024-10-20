@@ -5,7 +5,9 @@
 package utilities;
 
 /**
- *
+ * This class sorts the Polygons array using the 
+ * Bubble Sort algorithm based on the compare type.
+ * 
  * @author benjaminmellott
  */
 

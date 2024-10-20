@@ -3,12 +3,12 @@ package appDomain;
 import polygons.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
+import utilities.mergeSorter;
 import utilities.bubbleSorter;
-import utilities.Merge;
 import utilities.SelectionSorter;
 import utilities.insertionSort;
+import utilities.quickSorter;
 
 public class AppDriver {
 
@@ -16,13 +16,14 @@ public class AppDriver {
         Shape[] shapes = null;
 
         //Command line arguments
-//        String fileName = null;
-//        String compareType = null;
-//        String sortType = null;
+        String fileName = null;
+        String compareType = null;
+        String sortType = null;
+        
         // Comment out to use command line; for testing only
-        String fileName = "shapes4.txt";
-        String compareType = "h";
-        String sortType = "insertion";
+//        String fileName = "shapes3.txt";
+//        String compareType = "m";
+//        String sortType = "insertion";
 
         for (int i = 0; i < args.length; i++) {
             if (args[i].startsWith("-f") || args[i].startsWith("-F")) {
@@ -124,28 +125,23 @@ public class AppDriver {
         }
 
         // Start counter
-        long startTime = System.currentTimeMillis();
+        long startTime, endTime;
 
-        // Merge elements based on the compare type 
+        startTime = System.currentTimeMillis();
+
+        // mergeSorter elements based on the compareBy type 
         Shape[] sortedShape = null;
         if (sortType == "m") {
-            Merge.mergeSort(compareType, shapes, 0, shapes.length - 1);
-        }
-        else if (sortType == "bubble")
-        {
+            mergeSorter.sort(compareType, shapes);
+        } else if (sortType == "bubble") {
             bubbleSorter.bubbleSort(shapes);
-        }
-        else if (sortType == "selection")
-        {
+        } else if (sortType == "selection") {
             SelectionSorter.selectionSort(shapes);
-        }
-        else if (sortType == "insertion")
-        {
+        } else if (sortType == "insertion") {
             insertionSort.insertionSort(shapes);
+        } else if (sortType == "q") {
+            quickSorter.sort(compareType, shapes);
         }
-        // TODO: add more sorting algorithms here
-        //End Counter
-        long endTime = System.currentTimeMillis();
 
         System.out.println("");
         // print the elements
@@ -162,6 +158,9 @@ public class AppDriver {
                 System.out.println(i + "-th element is: " + shape.toString(compareType));
             }
         }
+
+        //End Counter
+        endTime = System.currentTimeMillis();
 
         System.out.println("b run time was: " + (endTime - startTime) + " milliseconds");
 
