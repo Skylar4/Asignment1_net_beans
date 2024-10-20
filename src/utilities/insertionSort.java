@@ -5,7 +5,8 @@
 package utilities;
 
 /**
- *
+ * This class sorts using insertion the Polygons based on the compare type.
+ * 
  * @author robin
  */
 public class insertionSort {

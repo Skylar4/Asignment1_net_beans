@@ -4,7 +4,6 @@
  */
 package polygons;
 
-import java.text.DecimalFormat;
 import java.util.Comparator;
 
 /**
@@ -35,5 +34,16 @@ public class ShapeComparator implements Comparator<Shape> {
             default:
                 return 0;
         }
+    }
+
+    public static <T extends Shape> int compareBy(T shape1, T shape2, String compareType) {
+        int comparisonResult;
+        if ("h".equals(compareType)) {
+            comparisonResult = shape1.compareTo(shape2);
+        } else {
+            ShapeComparator comparator = new ShapeComparator(compareType);
+            comparisonResult = comparator.compare(shape1, shape2);
+        }
+        return comparisonResult;
     }
 }
