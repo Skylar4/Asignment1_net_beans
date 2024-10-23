@@ -1,7 +1,7 @@
 package utilities;
 
 import polygons.Shape;
-import static polygons.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.compareBy;
 import java.util.Arrays;
 
 /**

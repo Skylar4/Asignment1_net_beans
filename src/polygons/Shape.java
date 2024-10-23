@@ -18,13 +18,9 @@ public abstract class Shape implements Comparable<Shape> {
         this.height = height;
     }
 
-    public double calcVolume() {
-        return 0.00;
-    }
+    public abstract double calcVolume();
 
-    public double calcBaseArea() {
-        return 0.00;
-    }
+    public abstract double calcBaseArea();
 
     public  double getHeight() {
         return height;
@@ -32,7 +28,6 @@ public abstract class Shape implements Comparable<Shape> {
 
     public void setHeight(double height) {
         this.height = height;
-
     }
 
     @Override

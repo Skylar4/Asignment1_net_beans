@@ -2,7 +2,7 @@ package utilities;
 
 import java.util.Random;
 import polygons.Shape;
-import static polygons.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.compareBy;
 
 /**
  * This class sorts the Polygons based on the compareBy type.
