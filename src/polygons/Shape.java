@@ -18,21 +18,16 @@ public abstract class Shape implements Comparable<Shape> {
         this.height = height;
     }
 
-    public double calcVolume() {
-        return 0.00;
-    }
+    public abstract double calcVolume();
 
-    public double calcBaseArea() {
-        return 0.00;
-    }
+    public abstract double calcBaseArea();
 
-    public  double getHeight() {
+    public double getHeight() {
         return height;
     }
 
     public void setHeight(double height) {
         this.height = height;
-
     }
 
     @Override
@@ -49,14 +44,13 @@ public abstract class Shape implements Comparable<Shape> {
     public String toString(String comparetype) {
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
-        if (comparetype == "v") {
-            return "The " + getClass().getName() + " has a Volume of: " + decimalFormat.format(calcVolume());
-        } else if (comparetype == "h") {
-            return "The " + getClass().getName() + " has a Height of: " + getHeight();
-        } else {
+        if (null == comparetype) {
             return "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
-        }
-
+        } else return switch (comparetype) {
+            case "v" -> "The " + getClass().getName() + " has a Volume of: " + decimalFormat.format(calcVolume());
+            case "h" -> "The " + getClass().getName() + " has a Height of: " + getHeight();
+            default -> "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
+        };
     }
 
 }

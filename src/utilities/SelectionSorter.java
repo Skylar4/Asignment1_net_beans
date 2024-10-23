@@ -5,7 +5,7 @@
 package utilities;
 
 import polygons.*;
-import static polygons.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.compareBy;
 
 /**
  * This class implements the selection sort algorithm to sort arrays. The
