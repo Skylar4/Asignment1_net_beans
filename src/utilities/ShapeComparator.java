@@ -36,7 +36,13 @@ public class ShapeComparator implements Comparator<Shape> {
                 return 0;
         }
     }
-
+    
+    public static <T extends Shape> void swap(T[] shapes, int index1, int index2) {
+        T temp = shapes[index1];
+        shapes[index1] = shapes[index2];
+        shapes[index2] = temp;
+    }
+    
     public static <T extends Shape> int compareBy(T shape1, T shape2, String compareType) {
         int comparisonResult;
         if ("h".equals(compareType)) {

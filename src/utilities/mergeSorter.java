@@ -10,12 +10,10 @@ import java.util.Arrays;
  * @author Marian Estrada
  */
 public class mergeSorter<T extends Shape> {
-
     private String compareType;
     private T[] array;
 
     /**
-     *
      * @param compareType the type of comparison to be used
      * @param array the array of shapes to be sorted
      */
@@ -25,7 +23,6 @@ public class mergeSorter<T extends Shape> {
     }
 
     /**
-     *
      * @param left
      * @param right
      */
@@ -45,13 +42,11 @@ public class mergeSorter<T extends Shape> {
         T[] leftArray = Arrays.copyOfRange(array, left, mid + 1);
         T[] rightArray = Arrays.copyOfRange(array, mid + 1, right + 1);
 
-        int i = 0, j = 0;
-        int k = left;
+        int i = 0, j = 0, k = left;
 
         while (i < n1 && j < n2) {
             int comparisonResult = compareBy(leftArray[i], rightArray[j], compareType);
-
-            if (comparisonResult <= 0) {
+            if (comparisonResult >= 0) { // Change the comparison sign for descending order
                 array[k] = leftArray[i];
                 i++;
             } else {
@@ -75,7 +70,6 @@ public class mergeSorter<T extends Shape> {
     }
 
     /**
-     *
      * @param <T>
      * @param compareType
      * @param array

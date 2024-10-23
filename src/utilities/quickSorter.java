@@ -3,19 +3,18 @@ package utilities;
 import java.util.Random;
 import polygons.Shape;
 import static utilities.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.swap;
 
 /**
  * This class sorts the Polygons based on the compareBy type.
- *
+ * 
  * @author Marian Estrada
  */
 public class quickSorter<T extends Shape> {
-
     private String compareType;
     private T[] array;
 
     /**
-     *
      * @param compareType the type of comparison to be used
      * @param array the array of shapes to be sorted
      */
@@ -25,10 +24,9 @@ public class quickSorter<T extends Shape> {
     }
 
     /**
-     * 
      * @param <T>
      * @param compareType
-     * @param shapes 
+     * @param shapes
      */
     public static <T extends Shape> void sort(String compareType, T[] shapes) {
         quickSort(shapes, 0, shapes.length - 1, compareType);
@@ -54,10 +52,10 @@ public class quickSorter<T extends Shape> {
         int rightPointer = highIndex - 1;
 
         while (leftPointer <= rightPointer) {
-            while (leftPointer <= rightPointer && compareBy(shapes[leftPointer], pivot, compareType) <= 0) {
+            while (leftPointer <= rightPointer && compareBy(shapes[leftPointer], pivot, compareType) >= 0) { // Change to >= for descending order
                 leftPointer++;
             }
-            while (leftPointer <= rightPointer && compareBy(shapes[rightPointer], pivot, compareType) >= 0) {
+            while (leftPointer <= rightPointer && compareBy(shapes[rightPointer], pivot, compareType) <= 0) { // Change to <= for descending order
                 rightPointer--;
             }
             if (leftPointer < rightPointer) {
@@ -67,11 +65,5 @@ public class quickSorter<T extends Shape> {
 
         swap(shapes, leftPointer, highIndex);
         return leftPointer;
-    }
-
-    private static <T extends Shape> void swap(T[] shapes, int index1, int index2) {
-        T temp = shapes[index1];
-        shapes[index1] = shapes[index2];
-        shapes[index2] = temp;
     }
 }
