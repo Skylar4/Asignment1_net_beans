@@ -26,7 +26,7 @@ public abstract class Shape implements Comparable<Shape> {
         return 0.00;
     }
 
-    public double getHeight() {
+    public  double getHeight() {
         return height;
     }
 
