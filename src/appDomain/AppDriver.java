@@ -52,7 +52,7 @@ public class AppDriver {
 
         startTime = System.currentTimeMillis();
 
-        if (null != sortType) // MergeSorter elements based on the compareBy type
+        if (null != sortType) // mergeSorter elements based on the compareBy type
         {
             switch (sortType) {
                 case "m" -> {
