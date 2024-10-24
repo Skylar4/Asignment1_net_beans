@@ -6,7 +6,7 @@ import utilities.FileReader;
 import utilities.MergeSorter;
 import utilities.BubbleSorter;
 import utilities.SelectionSorter;
-import utilities.InsertionSort;
+import utilities.InsertionSorter;
 import utilities.QuickSorter;
 
 public class AppDriver {
@@ -69,7 +69,7 @@ public class AppDriver {
                 }
                 case "insertion" -> {
                     System.out.println("Sorting by Insertion Sort algorithm");
-                    InsertionSort.insertionSort(shapes);
+                    InsertionSorter.insertionSort(shapes);
                 }
                 case "q" -> {
                     System.out.println("Sorting by Quick Sort algorithm");
