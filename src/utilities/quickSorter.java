@@ -10,7 +10,7 @@ import static utilities.ShapeComparator.swap;
  * 
  * @author Marian Estrada
  */
-public class quickSorter<T extends Shape> {
+public class QuickSorter<T extends Shape> {
     private String compareType;
     private T[] array;
 
@@ -18,7 +18,7 @@ public class quickSorter<T extends Shape> {
      * @param compareType the type of comparison to be used
      * @param array the array of shapes to be sorted
      */
-    public quickSorter(String compareType, T[] array) {
+    public QuickSorter(String compareType, T[] array) {
         this.compareType = compareType;
         this.array = array;
     }
