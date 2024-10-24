@@ -11,7 +11,7 @@ package utilities;
  * @author benjaminmellott
  */
 
-public class bubbleSorter 
+public class BubbleSorter 
 {
     public static <T extends Comparable<T>>  void bubbleSort(T[] shapesList)
     {

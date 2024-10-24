@@ -9,7 +9,7 @@ package utilities;
  * 
  * @author robin
  */
-public class insertionSort {
+public class InsertionSort {
        
             
     public static <T extends Comparable<T>> void insertionSort(T[] array){

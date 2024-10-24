@@ -9,7 +9,7 @@ import java.util.Arrays;
  * 
  * @author Marian Estrada
  */
-public class mergeSorter<T extends Shape> {
+public class MergeSorter<T extends Shape> {
     private String compareType;
     private T[] array;
 
@@ -17,7 +17,7 @@ public class mergeSorter<T extends Shape> {
      * @param compareType the type of comparison to be used
      * @param array the array of shapes to be sorted
      */
-    public mergeSorter(String compareType, T[] array) {
+    public MergeSorter(String compareType, T[] array) {
         this.compareType = compareType;
         this.array = array;
     }
@@ -75,7 +75,7 @@ public class mergeSorter<T extends Shape> {
      * @param array
      */
     public static <T extends Shape> void sort(String compareType, T[] array) {
-        mergeSorter<T> sorter = new mergeSorter<>(compareType, array);
+        MergeSorter<T> sorter = new MergeSorter<>(compareType, array);
         sorter.mergeSort(0, array.length - 1);
     }
 }

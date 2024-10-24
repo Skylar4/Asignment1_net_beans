@@ -3,11 +3,11 @@ package appDomain;
 import polygons.*;
 import java.io.File;
 import utilities.FileReader;
-import utilities.mergeSorter;
-import utilities.bubbleSorter;
+import utilities.MergeSorter;
+import utilities.BubbleSorter;
 import utilities.SelectionSorter;
-import utilities.insertionSort;
-import utilities.quickSorter;
+import utilities.InsertionSort;
+import utilities.QuickSorter;
 
 public class AppDriver {
 
@@ -52,16 +52,16 @@ public class AppDriver {
 
         startTime = System.currentTimeMillis();
 
-        if (null != sortType) // mergeSorter elements based on the compareBy type
+        if (null != sortType) // MergeSorter elements based on the compareBy type
         {
             switch (sortType) {
                 case "m" -> {
                     System.out.println("Sorting by Merge Sort algorithm");
-                    mergeSorter.sort(compareType, shapes);
+                    MergeSorter.sort(compareType, shapes);
                 }
                 case "bubble" -> {
                     System.out.println("Sorting by Bubble Sort algorithm");
-                    bubbleSorter.bubbleSort(shapes);
+                    BubbleSorter.bubbleSort(shapes);
                 }
                 case "selection" -> {
                     System.out.println("Sorting by Selection Sort algorithm");
@@ -69,11 +69,11 @@ public class AppDriver {
                 }
                 case "insertion" -> {
                     System.out.println("Sorting by Insertion Sort algorithm");
-                    insertionSort.insertionSort(shapes);
+                    InsertionSort.insertionSort(shapes);
                 }
                 case "q" -> {
                     System.out.println("Sorting by Quick Sort algorithm");
-                    quickSorter.sort(compareType, shapes);
+                    QuickSorter.sort(compareType, shapes);
                 }
                 default -> {
                 }
