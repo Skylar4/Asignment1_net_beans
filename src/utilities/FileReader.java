@@ -22,7 +22,7 @@ public class FileReader {
         
     }
     
-    public Shape[] CreateShapes(){
+    public  Shape[] CreateShapes(){
            Shape[] shapes = null;
            try {
            Scanner scanner = new Scanner(file);

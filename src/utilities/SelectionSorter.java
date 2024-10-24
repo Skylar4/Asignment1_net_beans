@@ -56,35 +56,37 @@ public class SelectionSorter <T extends Comparable<T>> {
         int length = array.length;
         if (Comparetype.equals("h") || Comparetype == null) {
             for (int i = 0; i < length - 1; i++) {
-                //small is assuming that the current index is the smallest number
+                //large is assuming that the current index is the largest number
                 int large = i;
                 //loop through the rest of the array and compare including the last element
                 for (int n = i + 1; n < length; n++) {
-                    //checking each element to see if it is smallest in the array
-                    if (array[large].compareTo(array[n]) > 0) {
+                    //checking each element to see if it is largest  in the array
+                    if (array[n].compareTo(array[large]) > 0) {
                         large = n;
                     }
-                   Shape temp = array[large];
-                   array[large] = array[n];
-                   array[n] = temp;
                 }
+                   Shape temp = array[i];
+                   array[i] = array[large];
+                   array[large] = temp;
+                
             }
         }
         else 
         {
                         for (int i = 0; i < length - 1; i++) {
-                //small is assuming that the current index is the smallest number
+                //large is assuming that the current index is the largest number
                 int large= i;
                 //loop through the rest of the array and compare including the last element
                 for (int n = i + 1; n < length; n++) {
                     //checking each element to see if it is largest in the array
-                    if (compareBy(array[large],array[n], Comparetype)  > 0) {
+                    if (compareBy(array[n],array[large], Comparetype)  > 0) {
                         large = n;
                     }
-                   Shape temp = array[large];
-                   array[large] = array[n];
-                   array[n] = temp;
                 }
+                   Shape temp = array[i];
+                   array[i] = array[large];
+                   array[large] = temp;
+                
             }
         
         
