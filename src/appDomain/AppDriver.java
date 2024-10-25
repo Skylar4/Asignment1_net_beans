@@ -2,11 +2,20 @@ package appDomain;
 
 import polygons.*;
 import java.io.File;
+<<<<<<< Updated upstream
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 import sortClasses.bubbleSorter;
 import utilities.Merge;
+=======
+import utilities.FileReader;
+import utilities.mergeSorter;
+import utilities.bubbleSorter;
+import utilities.SelectionSorter;
+import utilities.InsertionSorter;
+import utilities.quickSorter;
+>>>>>>> Stashed changes
 
 public class AppDriver {
 
@@ -18,6 +27,7 @@ public class AppDriver {
 //        String compareType = null;
 //        String sortType = null;
         // Comment out to use command line; for testing only
+<<<<<<< Updated upstream
         String fileName = "shapes3.txt";
         String compareType = "h";
         String sortType = "bubble";
@@ -29,6 +39,18 @@ public class AppDriver {
                 compareType = args[i].substring(2).toLowerCase();
             } else if (args[i].startsWith("-s") || args[i].startsWith("-S")) {
                 sortType = args[i].substring(2).toLowerCase();
+=======
+        String fileName = "shapes4.txt";
+        String compareType = "b";
+        String sortType = "b";
+        for (String arg : args) {
+            if (arg.startsWith("-f") || arg.startsWith("-F")) {
+                fileName = arg.substring(2);
+            } else if (arg.startsWith("-t") || arg.startsWith("-T")) {
+                compareType = arg.substring(2).toLowerCase();
+            } else if (arg.startsWith("-s") || arg.startsWith("-S")) {
+                sortType = arg.substring(2).toLowerCase();
+>>>>>>> Stashed changes
             }
         }
 
@@ -37,6 +59,7 @@ public class AppDriver {
             //return;
         }
 
+<<<<<<< Updated upstream
         try {
             //creating the file class to be read
             int size;
@@ -47,6 +70,42 @@ public class AppDriver {
                 String firstLine = scanner.nextLine();
                 size = Integer.parseInt(firstLine.trim());
                 shapes = new Shape[size];
+=======
+        FileReader fr = new FileReader(txt);
+
+        shapes = fr.CreateShapes();
+
+        // Start counter
+        long startTime, endTime;
+
+        startTime = System.currentTimeMillis();
+
+        if (null != sortType) // mergeSorter elements based on the compareBy type
+        {
+            switch (sortType) {
+                case "m" -> {
+                    System.out.println("Sorting by Merge Sort algorithm");
+                    mergeSorter.sort(compareType, shapes);
+                }
+                case "b" -> {
+                    System.out.println("Sorting by Bubble Sort algorithm");
+                    bubbleSorter.sort(compareType, shapes);
+                }
+                case "s" -> {
+                    System.out.println("Sorting by Selection Sort algorithm");
+                    SelectionSorter.Sort(shapes, compareType);
+                }
+                case "i" -> {
+                    System.out.println("Sorting by Insertion Sort algorithm");
+                    InsertionSorter.insertionSort(shapes);
+                }
+                case "q" -> {
+                    System.out.println("Sorting by Quick Sort algorithm");
+                    quickSorter.sort(compareType, shapes);
+                }
+                default -> {
+                }
+>>>>>>> Stashed changes
             }
 
             int index = 0;

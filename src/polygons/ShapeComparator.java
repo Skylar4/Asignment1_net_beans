@@ -23,7 +23,8 @@ public class ShapeComparator implements Comparator<Shape> {
     //height can be done in the compareTo in the shape class 
     @Override
     public int compare(Shape s1, Shape s2) {
-        switch (compareType) {
+        switch (compareType) 
+        {
             case "a":
                 double baseArea1 = s1.calcBaseArea();
                 double baseArea2 = s2.calcBaseArea();
@@ -36,4 +37,27 @@ public class ShapeComparator implements Comparator<Shape> {
                 return 0;
         }
     }
+<<<<<<< Updated upstream:src/polygons/ShapeComparator.java
+=======
+    
+    public static <T extends Shape> void swap(T[] shapes, int index1, int index2) {
+        T temp = shapes[index1];
+        shapes[index1] = shapes[index2];
+        shapes[index2] = temp;
+    }
+    
+    public static <T extends Shape> int compareBy(T shape1, T shape2, String compareType) {
+        int comparisonResult;
+        if ("h".equals(compareType)) 
+        {
+            comparisonResult = shape1.compareTo(shape2);
+        } 
+        else 
+        {
+            ShapeComparator comparator = new ShapeComparator(compareType);
+            comparisonResult = comparator.compare(shape1, shape2);
+        }
+        return comparisonResult;
+    }
+>>>>>>> Stashed changes:src/utilities/ShapeComparator.java
 }
