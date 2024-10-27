@@ -16,14 +16,14 @@ public class AppDriver {
         int interval = 1000; //denominotor to display every nth element in the result output
 
         //Command line arguments
-        String fileName = null;
-        String compareType = null;
-        String sortType = null;
+//        String fileName = null;
+//        String compareType = null;
+//        String sortType = null;
 
         // Comment out to use command line; for testing only
-//        String fileName = "shapes3.txt";
-//        String compareType = "m";
-//        String sortType = "insertion";
+        String fileName = "shapes2.txt";
+        String compareType = "a";
+        String sortType = "selection";
         for (String arg : args) {
             if (arg.startsWith("-f") || arg.startsWith("-F")) {
                 fileName = arg.substring(2);
