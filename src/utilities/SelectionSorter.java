@@ -71,7 +71,7 @@ public class SelectionSorter <T extends Shape> {
         }
         else 
         {
-                        for (int i = 0; i < length - 1; i++) {
+                for (int i = 0; i < length - 1; i++) {
                 //large is assuming that the current index is the largest number
                 int large= i;
                 //loop through the rest of the array and compare including the last element

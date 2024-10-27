@@ -29,6 +29,20 @@ public abstract class Shape implements Comparable<Shape> {
     public void setHeight(double height) {
         this.height = height;
     }
+    
+    public double getComparableValue(String compareType) {
+        switch (compareType.toLowerCase()) 
+        {
+            case "a":
+                return this.calcBaseArea();
+            case "v":
+                return this.calcVolume();
+            case "h":
+                return this.height;
+            default:
+                throw new IllegalArgumentException("Invalid compare type: " + compareType);
+        }
+    }
 
     @Override
     public int compareTo(Shape shape2) {

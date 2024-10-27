@@ -8,6 +8,7 @@ import utilities.BubbleSorter;
 import utilities.SelectionSorter;
 import utilities.InsertionSorter;
 import utilities.QuickSorter;
+import utilities.RadixSorter;
 
 public class AppDriver {
 
@@ -51,9 +52,9 @@ public class AppDriver {
     }
 
     private static String[] parseArguments(String[] args) {
-        String fileName = "shapes4.txt";
-        String compareType = "v";
-        String sortType = "b";
+        String fileName = "shapes3.txt";
+        String compareType = "h"; // Valid types for this are (h (height), v (volume), a (area))
+        String sortType = "r";
 
         for (String arg : args) {
             if (arg.startsWith(FILE_PREFIX)) {
@@ -88,6 +89,10 @@ public class AppDriver {
             case "q" -> {
                 System.out.println("Sorting by Quick Sort algorithm");
                 QuickSorter.sort(compareType, shapes);
+            }
+            case "r" -> {
+                System.out.println("Sorting by Radix Sort algorithm");
+                RadixSorter.sort(compareType, shapes);
             }
             default -> throw new IllegalArgumentException("Invalid sort type: " + sortType);
         }
