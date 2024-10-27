@@ -14,8 +14,9 @@ import static polygons.ShapeComparator.compareBy;
  * sorting methods for shapes based on volume and area.
  *
  * @author jones
+ * @param <Shape> this selections sorter can only be used with type Shape shapes
  */
-public class SelectionSorter <T extends Comparable<T>> {
+public class SelectionSorter <Shape extends Comparable<Shape>> {
 
     Shape[] array;
     String Comparetype;
@@ -38,10 +39,10 @@ public class SelectionSorter <T extends Comparable<T>> {
      *
      * @param <T> the type of elements in the array, which must implement
      * Comparable
-     * @param array the array to be sorted, can be of any type that extends
-     * Comparable
+     * @param data
+     * @param comparetype this decides how the shapes will be sorted, by height, area, or volume
      */
-    public static <T extends Comparable<T>>  void Sort(Shape[] data, String comparetype) {
+    public static < extends Comparable<T>>  void Sort(Shape[] data, String comparetype) {
         SelectionSorter ss = new SelectionSorter(data, comparetype);
         ss.selectionSort();
     }
@@ -50,7 +51,6 @@ public class SelectionSorter <T extends Comparable<T>> {
      * Sorts an array of Shape objects by their volume using the selection sort
      * algorithm.
      *
-     * @param array an array of Shape objects to be sorted by volume
      */
     public void selectionSort() {
         int length = array.length;
