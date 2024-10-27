@@ -13,7 +13,7 @@ package utilities;
 
 public class BubbleSorter 
 {
-    public static <T extends Comparable<T>>  void bubbleSort(T[] shapesList)
+    public static <T extends Comparable<T>>  void BubbleSorter(T[] shapesList)
     {
         int length = shapesList.length;
         for (int i = 0; i < length - 1; i++)
