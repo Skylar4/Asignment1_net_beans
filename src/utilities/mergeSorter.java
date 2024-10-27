@@ -8,10 +8,11 @@ import java.util.Arrays;
  * This class sorts the Polygons based on the compare type.
  * 
  * @author Marian Estrada
+ * @param <T> extends Shape Class
  */
 public class MergeSorter<T extends Shape> {
-    private String compareType;
-    private T[] array;
+    private final String compareType;
+    private final T[] array;
 
     /**
      * @param compareType the type of comparison to be used
@@ -46,7 +47,7 @@ public class MergeSorter<T extends Shape> {
 
         while (i < n1 && j < n2) {
             int comparisonResult = compareBy(leftArray[i], rightArray[j], compareType);
-            if (comparisonResult >= 0) { // Change the comparison sign for descending order
+            if (comparisonResult >= 0) { 
                 array[k] = leftArray[i];
                 i++;
             } else {

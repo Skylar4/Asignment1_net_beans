@@ -13,17 +13,17 @@ public class AppDriver {
 
     public static void main(String[] args) {
         Shape[] shapes;
-        int interval = 1000; //denominotor to display every nth element in the result output
+        int interval = 1000; //denominator to display every nth element in the result output
 
         //Command line arguments
-//        String fileName = null;
-//        String compareType = null;
-//        String sortType = null;
+        String fileName = null;
+        String compareType = null;
+        String sortType = null;
 
         // Comment out to use command line; for testing only
-        String fileName = "shapes2.txt";
-        String compareType = "a";
-        String sortType = "selection";
+//        String fileName = "shapes2.txt";
+//        String compareType = "a";
+//        String sortType = "selection";
         for (String arg : args) {
             if (arg.startsWith("-f") || arg.startsWith("-F")) {
                 fileName = arg.substring(2);
@@ -59,15 +59,15 @@ public class AppDriver {
                     System.out.println("Sorting by Merge Sort algorithm");
                     MergeSorter.sort(compareType, shapes);
                 }
-                case "bubble" -> {
+                case "b" -> {
                     System.out.println("Sorting by Bubble Sort algorithm");
                     BubbleSorter.bubbleSort(shapes);
                 }
-                case "selection" -> {
+                case "s" -> {
                     System.out.println("Sorting by Selection Sort algorithm");
                     SelectionSorter.Sort(shapes, compareType);
                 }
-                case "insertion" -> {
+                case "i" -> {
                     System.out.println("Sorting by Insertion Sort algorithm");
                     InsertionSorter.insertionSort(shapes);
                 }
