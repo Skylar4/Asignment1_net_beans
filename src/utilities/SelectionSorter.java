@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import polygons.*;
@@ -14,8 +10,9 @@ import static utilities.ShapeComparator.compareBy;
  * sorting methods for shapes based on volume and area.
  *
  * @author jones
+ * @param <T> extends Shape
  */
-public class SelectionSorter <T extends Comparable<T>> {
+public class SelectionSorter <T extends Shape> {
 
     Shape[] array;
     String Comparetype;
@@ -38,10 +35,10 @@ public class SelectionSorter <T extends Comparable<T>> {
      *
      * @param <T> the type of elements in the array, which must implement
      * Comparable
-     * @param array the array to be sorted, can be of any type that extends
-     * Comparable
+     * @param data
+     * @param comparetype
      */
-    public static <T extends Comparable<T>>  void Sort(Shape[] data, String comparetype) {
+    public static <T extends Shape>  void Sort(Shape[] data, String comparetype) {
         SelectionSorter ss = new SelectionSorter(data, comparetype);
         ss.selectionSort();
     }
@@ -50,7 +47,6 @@ public class SelectionSorter <T extends Comparable<T>> {
      * Sorts an array of Shape objects by their volume using the selection sort
      * algorithm.
      *
-     * @param array an array of Shape objects to be sorted by volume
      */
     public void selectionSort() {
         int length = array.length;

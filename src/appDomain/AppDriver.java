@@ -61,7 +61,7 @@ public class AppDriver {
                 }
                 case "b" -> {
                     System.out.println("Sorting by Bubble Sort algorithm");
-                    BubbleSorter.bubbleSort(shapes);
+                    BubbleSorter.BubbleSorter(shapes);
                 }
                 case "s" -> {
                     System.out.println("Sorting by Selection Sort algorithm");

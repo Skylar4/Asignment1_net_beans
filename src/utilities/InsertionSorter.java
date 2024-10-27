@@ -4,6 +4,8 @@
  */
 package utilities;
 
+import polygons.Shape;
+
 /**
  * This class sorts using insertion the Polygons based on the compare type.
  * 
@@ -12,7 +14,7 @@ package utilities;
 public class InsertionSorter {
        
             
-    public static <T extends Comparable<T>> void insertionSort(T[] array){
+    public static <T extends Shape> void insertionSort(T[] array){
         
         int arraySize = array.length;
         
