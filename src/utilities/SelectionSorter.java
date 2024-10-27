@@ -10,7 +10,7 @@ import static utilities.ShapeComparator.compareBy;
  * sorting methods for shapes based on volume and area.
  *
  * @author jones
- * @param <T> extends Shape
+ * @param <T> this selections sorter can only be used with type Shape shapes
  */
 public class SelectionSorter <T extends Shape> {
 
@@ -33,10 +33,12 @@ public class SelectionSorter <T extends Shape> {
      * This method can sort any array as long as its elements implement the
      * Comparable interface.
      *
+     * @param <<error>>
      * @param <T> the type of elements in the array, which must implement
      * Comparable
-     * @param data
-     * @param comparetype
+     * @param data an array of type Shapes  to be sorted
+     * @param comparetype this decides how the shapes will be sorted, by height, area, or volume
+=======
      */
     public static <T extends Shape>  void Sort(Shape[] data, String comparetype) {
         SelectionSorter ss = new SelectionSorter(data, comparetype);
