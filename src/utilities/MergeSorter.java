@@ -7,7 +7,6 @@ import java.util.Arrays;
 /**
  * This class sorts the Polygons based on the compare type.
  * 
- * @author Marian Estrada
  * @param <T> extends Shape Class
  */
 public class MergeSorter<T extends Shape> {
@@ -24,10 +23,13 @@ public class MergeSorter<T extends Shape> {
     }
 
     /**
-     * @param left
-     * @param right
+     * Sorts the array using merge sort algorithm.
      */
-    public void mergeSort(int left, int right) {
+    public void mergeSort() {
+        mergeSort(0, array.length - 1);
+    }
+
+    private void mergeSort(int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
             mergeSort(left, mid);
@@ -46,37 +48,31 @@ public class MergeSorter<T extends Shape> {
         int i = 0, j = 0, k = left;
 
         while (i < n1 && j < n2) {
-            int comparisonResult = compareBy(leftArray[i], rightArray[j], compareType);
-            if (comparisonResult >= 0) { 
-                array[k] = leftArray[i];
-                i++;
+            if (compareBy(leftArray[i], rightArray[j], compareType) >= 0) {
+                array[k++] = leftArray[i++];
             } else {
-                array[k] = rightArray[j];
-                j++;
+                array[k++] = rightArray[j++];
             }
-            k++;
         }
 
         while (i < n1) {
-            array[k] = leftArray[i];
-            i++;
-            k++;
+            array[k++] = leftArray[i++];
         }
 
         while (j < n2) {
-            array[k] = rightArray[j];
-            j++;
-            k++;
+            array[k++] = rightArray[j++];
         }
     }
 
     /**
-     * @param <T>
-     * @param compareType
-     * @param array
+     * Static method to sort an array of shapes using merge sort.
+     * 
+     * @param <T> extends Shape
+     * @param compareType the type of comparison to be used
+     * @param array the array of shapes to be sorted
      */
     public static <T extends Shape> void sort(String compareType, T[] array) {
         MergeSorter<T> sorter = new MergeSorter<>(compareType, array);
-        sorter.mergeSort(0, array.length - 1);
+        sorter.mergeSort();
     }
 }

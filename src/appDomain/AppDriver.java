@@ -11,76 +11,89 @@ import utilities.QuickSorter;
 
 public class AppDriver {
 
-    public static void main(String[] args) {
-        Shape[] shapes;
-        int interval = 1000; //denominator to display every nth element in the result output
+    private static final String FILE_PREFIX = "-f";
+    private static final String COMPARE_PREFIX = "-t";
+    private static final String SORT_PREFIX = "-s";
+    private static final int INTERVAL = 1000;
 
-        //Command line arguments
+    public static void main(String[] args) {
         String fileName = null;
         String compareType = null;
         String sortType = null;
 
         // Comment out to use command line; for testing only
-//        String fileName = "shapes2.txt";
-//        String compareType = "a";
-//        String sortType = "selection";
-        for (String arg : args) {
-            if (arg.startsWith("-f") || arg.startsWith("-F")) {
-                fileName = arg.substring(2);
-            } else if (arg.startsWith("-t") || arg.startsWith("-T")) {
-                compareType = arg.substring(2).toLowerCase();
-            } else if (arg.startsWith("-s") || arg.startsWith("-S")) {
-                sortType = arg.substring(2).toLowerCase();
-            }
-        }
+//        fileName = "shapes2.txt";
+//        compareType = "a";
+//        sortType = "selection";
+
+        String[] parsedArgs = parseArguments(args);
+        fileName = parsedArgs[0];
+        compareType = parsedArgs[1];
+        sortType = parsedArgs[2];
 
         System.out.println("Filename " + fileName + "; Compare By " + compareType + "; Sort Type: " + sortType);
 
         if (fileName == null || compareType == null || sortType == null) {
             System.out.println("Usage: java -jar Sort.jar -f<file_name> -t<compare_type> -s<sort_type>");
-            //return;
+            return;
         }
-        //creating the file class to be read
+
         File txt = new File(fileName);
-
         FileReader fr = new FileReader(txt);
+        Shape[] shapes = fr.CreateShapes();
 
-        shapes = fr.CreateShapes();
+        long startTime = System.currentTimeMillis();
+        sortShapes(sortType, compareType, shapes);
+        long endTime = System.currentTimeMillis();
 
-        // Start counter
-        long startTime, endTime;
+        printShapes(shapes, compareType);
+        System.out.println("run time was: " + (endTime - startTime) + " milliseconds");
+    }
 
-        startTime = System.currentTimeMillis();
+    private static String[] parseArguments(String[] args) {
+        String fileName = null;
+        String compareType = null;
+        String sortType = null;
 
-        if (null != sortType) // mergeSorter elements based on the compareBy type
-        {
-            switch (sortType) {
-                case "m" -> {
-                    System.out.println("Sorting by Merge Sort algorithm");
-                    MergeSorter.sort(compareType, shapes);
-                }
-                case "b" -> {
-                    System.out.println("Sorting by Bubble Sort algorithm");
-                    BubbleSorter.BubbleSorter(shapes);
-                }
-                case "s" -> {
-                    System.out.println("Sorting by Selection Sort algorithm");
-                    SelectionSorter.Sort(shapes, compareType);
-                }
-                case "i" -> {
-                    System.out.println("Sorting by Insertion Sort algorithm");
-                    InsertionSorter.insertionSort(shapes);
-                }
-                case "q" -> {
-                    System.out.println("Sorting by Quick Sort algorithm");
-                    QuickSorter.sort(compareType, shapes);
-                }
-                default -> {
-                }
+        for (String arg : args) {
+            if (arg.startsWith(FILE_PREFIX)) {
+                fileName = arg.substring(FILE_PREFIX.length());
+            } else if (arg.startsWith(COMPARE_PREFIX)) {
+                compareType = arg.substring(COMPARE_PREFIX.length()).toLowerCase();
+            } else if (arg.startsWith(SORT_PREFIX)) {
+                sortType = arg.substring(SORT_PREFIX.length()).toLowerCase();
             }
         }
+        return new String[]{fileName, compareType, sortType};
+    }
 
-        // print the elements
+    private static void sortShapes(String sortType, String compareType, Shape[] shapes) {
+        switch (sortType) {
+            case "m" -> {
+                System.out.println("Sorting by Merge Sort algorithm");
+                MergeSorter.sort(compareType, shapes);
+            }
+            case "b" -> {
+                System.out.println("Sorting by Bubble Sort algorithm");
+                BubbleSorter.sort(shapes);
+            }
+            case "s" -> {
+                System.out.println("Sorting by Selection Sort algorithm");
+                SelectionSorter.Sort(shapes, compareType);
+            }
+            case "i" -> {
+                System.out.println("Sorting by Insertion Sort algorithm");
+                InsertionSorter.sort(shapes);
+            }
+            case "q" -> {
+                System.out.println("Sorting by Quick Sort algorithm");
+                QuickSorter.sort(compareType, shapes);
+            }
+            default -> throw new IllegalArgumentException("Invalid sort type: " + sortType);
+        }
+    }
+
+    private static void printShapes(Shape[] shapes, String compareType) {
         for (int i = 0; i < shapes.length; i++) {
             Shape shape = shapes[i];
             if (i == 0) {
@@ -89,16 +102,9 @@ public class AppDriver {
                 System.out.println("Second Last element is: " + shape.toString(compareType));
             } else if (i == shapes.length - 1) {
                 System.out.println("Last element is: " + shape.toString(compareType));
-            } else if (i % interval == 0) 
-            {
+            } else if (i % INTERVAL == 0) {
                 System.out.println(i + "-th element is: " + shape.toString(compareType));
             }
         }
-
-        //End Counter
-        endTime = System.currentTimeMillis();
-
-        System.out.println("run time was: " + (endTime - startTime) + " milliseconds");
-
     }
 }

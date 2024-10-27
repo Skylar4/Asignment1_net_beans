@@ -15,7 +15,7 @@ import polygons.Shape;
 
 public class BubbleSorter 
 {
-    public static <T extends Shape> void BubbleSorter(T[] shapesList)
+    public static <T extends Shape> void sort(T[] shapesList)
     {
         int length = shapesList.length;
         for (int i = 0; i < length - 1; i++)

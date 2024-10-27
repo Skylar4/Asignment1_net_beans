@@ -6,13 +6,13 @@ import static utilities.ShapeComparator.compareBy;
 import static utilities.ShapeComparator.swap;
 
 /**
- * This class sorts the Polygons based on the compareBy type.
+ * This class sorts the Polygons based on the compareBy type using Quick Sort algorithm.
  * 
- * @author Marian Estrada
+ * @param <T> extends Shape Class
  */
 public class QuickSorter<T extends Shape> {
-    private String compareType;
-    private T[] array;
+    private final String compareType;
+    private final T[] array;
 
     /**
      * @param compareType the type of comparison to be used
@@ -24,46 +24,56 @@ public class QuickSorter<T extends Shape> {
     }
 
     /**
-     * @param <T>
-     * @param compareType
-     * @param shapes
+     * Sorts the array using quick sort algorithm.
      */
-    public static <T extends Shape> void sort(String compareType, T[] shapes) {
-        quickSort(shapes, 0, shapes.length - 1, compareType);
+    public void quickSort() {
+        quickSort(0, array.length - 1);
     }
 
-    private static <T extends Shape> void quickSort(T[] shapes, int lowIndex, int highIndex, String compareType) {
+    private void quickSort(int lowIndex, int highIndex) {
         if (lowIndex >= highIndex) {
             return;
         }
 
         int pivotIndex = new Random().nextInt(highIndex - lowIndex + 1) + lowIndex;
-        T pivot = shapes[pivotIndex];
-        swap(shapes, pivotIndex, highIndex);
+        T pivot = array[pivotIndex];
+        swap(array, pivotIndex, highIndex);
 
-        int leftPointer = partition(shapes, lowIndex, highIndex, pivot, compareType);
+        int leftPointer = partition(lowIndex, highIndex, pivot);
 
-        quickSort(shapes, lowIndex, leftPointer - 1, compareType);
-        quickSort(shapes, leftPointer + 1, highIndex, compareType);
+        quickSort(lowIndex, leftPointer - 1);
+        quickSort(leftPointer + 1, highIndex);
     }
 
-    private static <T extends Shape> int partition(T[] shapes, int lowIndex, int highIndex, T pivot, String compareType) {
+    private int partition(int lowIndex, int highIndex, T pivot) {
         int leftPointer = lowIndex;
         int rightPointer = highIndex - 1;
 
         while (leftPointer <= rightPointer) {
-            while (leftPointer <= rightPointer && compareBy(shapes[leftPointer], pivot, compareType) >= 0) { // Change to >= for descending order
+            while (leftPointer <= rightPointer && compareBy(array[leftPointer], pivot, compareType) >= 0) { // Change to >= for descending order
                 leftPointer++;
             }
-            while (leftPointer <= rightPointer && compareBy(shapes[rightPointer], pivot, compareType) <= 0) { // Change to <= for descending order
+            while (leftPointer <= rightPointer && compareBy(array[rightPointer], pivot, compareType) <= 0) { // Change to <= for descending order
                 rightPointer--;
             }
             if (leftPointer < rightPointer) {
-                swap(shapes, leftPointer, rightPointer);
+                swap(array, leftPointer, rightPointer);
             }
         }
 
-        swap(shapes, leftPointer, highIndex);
+        swap(array, leftPointer, highIndex);
         return leftPointer;
+    }
+
+    /**
+     * Static method to sort an array of shapes using quick sort.
+     * 
+     * @param <T> extends Shape
+     * @param compareType the type of comparison to be used
+     * @param array the array of shapes to be sorted
+     */
+    public static <T extends Shape> void sort(String compareType, T[] array) {
+        QuickSorter<T> sorter = new QuickSorter<>(compareType, array);
+        sorter.quickSort();
     }
 }

@@ -14,7 +14,7 @@ import polygons.Shape;
 public class InsertionSorter {
        
             
-    public static <T extends Shape> void insertionSort(T[] array){
+    public static <T extends Shape> void sort(T[] array){
         
         int arraySize = array.length;
         
