@@ -13,23 +13,39 @@ import polygons.Shape;
  * @author benjaminmellott
  */
 
-public class BubbleSorter 
+public class BubbleSorter<T extends Shape>
 {
-    public static <T extends Shape> void sort(T[] shapesList)
+    private final String compareType;
+    private final T[] array;
+    
+    public BubbleSorter(String compareType, T[] array)
     {
-        int length = shapesList.length;
+        this.compareType = compareType;
+        this.array = array;
+    }
+    
+    public void bubbleSort(T[] array)
+    {
+        int length = array.length;
         for (int i = 0; i < length - 1; i++)
         {
             for (int j = 0; j < length - i - 1; j++)
             {
-                if(shapesList[j].compareTo(shapesList[j + 1]) == 1)
+                if(array[j].compareTo(array[j + 1]) == 1)
                 {
-                    T temp = shapesList[j];
-                    shapesList[j] = shapesList[j+1];
-                    shapesList[j+1] = temp;
+                    T temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
                 }
             }
-        }       
+        }
     }
+    
+    public static <T extends Shape> void sort(String compareType, T[] array)
+    {
+        BubbleSorter<T> sorter = new BubbleSorter<>(compareType, array);
+        sorter.bubbleSort(array);
+    }
+    
     
 }

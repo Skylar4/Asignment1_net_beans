@@ -45,11 +45,12 @@ public abstract class Shape implements Comparable<Shape> {
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
         if (null == comparetype) {
-            return "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
+            return "This is not a valid parameter to sort by, Please try again!";
         } else return switch (comparetype) {
             case "v" -> "The " + getClass().getName() + " has a Volume of: " + decimalFormat.format(calcVolume());
             case "h" -> "The " + getClass().getName() + " has a Height of: " + getHeight();
-            default -> "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
+            case "a" -> "The " + getClass().getName() + " has a Base Area of: " + decimalFormat.format(calcBaseArea());
+            default -> "This is not a valid parameter to sort by, Please try again!";
         };
     }
 

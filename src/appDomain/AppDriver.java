@@ -51,9 +51,9 @@ public class AppDriver {
     }
 
     private static String[] parseArguments(String[] args) {
-        String fileName = null;
-        String compareType = null;
-        String sortType = null;
+        String fileName = "shapes4.txt";
+        String compareType = "v";
+        String sortType = "b";
 
         for (String arg : args) {
             if (arg.startsWith(FILE_PREFIX)) {
@@ -75,7 +75,7 @@ public class AppDriver {
             }
             case "b" -> {
                 System.out.println("Sorting by Bubble Sort algorithm");
-                BubbleSorter.sort(shapes);
+                BubbleSorter.sort(compareType, shapes);
             }
             case "s" -> {
                 System.out.println("Sorting by Selection Sort algorithm");
