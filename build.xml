@@ -36,11 +36,9 @@
 
     <!-- Create jar file for Sort class -->
     <target name="-pre-jar">
-        <mkdir dir="${dist.dir}"/>
-        <jar destfile="Sort.jar" basedir="${build.classes.dir}">
-            <include name="utilities/Sort.class"/>
+        <jar destfile="${basedir}/Sort.jar" basedir="${build.classes.dir}">
             <manifest>
-                <attribute name="Sort" value="utilities.Sort"/>
+                <attribute name="Main-Class" value="appDomain.AppDriver"/>
             </manifest>
         </jar>
     </target>

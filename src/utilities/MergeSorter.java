@@ -1,35 +1,35 @@
 package utilities;
 
 import polygons.Shape;
-import static polygons.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.compareBy;
 import java.util.Arrays;
 
 /**
  * This class sorts the Polygons based on the compare type.
  * 
- * @author Marian Estrada
+ * @param <T> extends Shape Class
  */
-public class mergeSorter<T extends Shape> {
-
-    private String compareType;
-    private T[] array;
+public class MergeSorter<T extends Shape> {
+    private final String compareType;
+    private final T[] array;
 
     /**
-     *
      * @param compareType the type of comparison to be used
      * @param array the array of shapes to be sorted
      */
-    public mergeSorter(String compareType, T[] array) {
+    public MergeSorter(String compareType, T[] array) {
         this.compareType = compareType;
         this.array = array;
     }
 
     /**
-     *
-     * @param left
-     * @param right
+     * Sorts the array using merge sort algorithm.
      */
-    public void mergeSort(int left, int right) {
+    public void mergeSort() {
+        mergeSort(0, array.length - 1);
+    }
+
+    private void mergeSort(int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
             mergeSort(left, mid);
@@ -45,43 +45,34 @@ public class mergeSorter<T extends Shape> {
         T[] leftArray = Arrays.copyOfRange(array, left, mid + 1);
         T[] rightArray = Arrays.copyOfRange(array, mid + 1, right + 1);
 
-        int i = 0, j = 0;
-        int k = left;
+        int i = 0, j = 0, k = left;
 
         while (i < n1 && j < n2) {
-            int comparisonResult = compareBy(leftArray[i], rightArray[j], compareType);
-
-            if (comparisonResult <= 0) {
-                array[k] = leftArray[i];
-                i++;
+            if (compareBy(leftArray[i], rightArray[j], compareType) >= 0) {
+                array[k++] = leftArray[i++];
             } else {
-                array[k] = rightArray[j];
-                j++;
+                array[k++] = rightArray[j++];
             }
-            k++;
         }
 
         while (i < n1) {
-            array[k] = leftArray[i];
-            i++;
-            k++;
+            array[k++] = leftArray[i++];
         }
 
         while (j < n2) {
-            array[k] = rightArray[j];
-            j++;
-            k++;
+            array[k++] = rightArray[j++];
         }
     }
 
     /**
-     *
-     * @param <T>
-     * @param compareType
-     * @param array
+     * Static method to sort an array of shapes using merge sort.
+     * 
+     * @param <T> extends Shape
+     * @param compareType the type of comparison to be used
+     * @param array the array of shapes to be sorted
      */
     public static <T extends Shape> void sort(String compareType, T[] array) {
-        mergeSorter<T> sorter = new mergeSorter<>(compareType, array);
-        sorter.mergeSort(0, array.length - 1);
+        MergeSorter<T> sorter = new MergeSorter<>(compareType, array);
+        sorter.mergeSort();
     }
 }

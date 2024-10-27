@@ -4,6 +4,8 @@
  */
 package utilities;
 
+import polygons.Shape;
+
 /**
  * This class sorts the Polygons array using the 
  * Bubble Sort algorithm based on the compare type.
@@ -11,9 +13,9 @@ package utilities;
  * @author benjaminmellott
  */
 
-public class bubbleSorter 
+public class BubbleSorter 
 {
-    public static <T extends Comparable<T>>  void bubbleSort(T[] shapesList)
+    public static <T extends Shape> void sort(T[] shapesList)
     {
         int length = shapesList.length;
         for (int i = 0; i < length - 1; i++)

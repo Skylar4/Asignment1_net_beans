@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import polygons.*;
-import static polygons.ShapeComparator.compareBy;
+import static utilities.ShapeComparator.compareBy;
 
 /**
  * This class implements the selection sort algorithm to sort arrays. The
@@ -16,7 +12,7 @@ import static polygons.ShapeComparator.compareBy;
  * @author jones
  * @param <T> this selections sorter can only be used with type Shape shapes
  */
-public class SelectionSorter <T extends Comparable<T>> {
+public class SelectionSorter <T extends Shape> {
 
     Shape[] array;
     String Comparetype;
@@ -42,8 +38,9 @@ public class SelectionSorter <T extends Comparable<T>> {
      * Comparable
      * @param data an array of type Shapes  to be sorted
      * @param comparetype this decides how the shapes will be sorted, by height, area, or volume
+=======
      */
-    public static <T extends Comparable<T>>  void Sort(Shape[] data, String comparetype) {
+    public static <T extends Shape>  void Sort(Shape[] data, String comparetype) {
         SelectionSorter ss = new SelectionSorter(data, comparetype);
         ss.selectionSort();
     }
@@ -57,35 +54,37 @@ public class SelectionSorter <T extends Comparable<T>> {
         int length = array.length;
         if (Comparetype.equals("h") || Comparetype == null) {
             for (int i = 0; i < length - 1; i++) {
-                //small is assuming that the current index is the smallest number
+                //large is assuming that the current index is the largest number
                 int large = i;
                 //loop through the rest of the array and compare including the last element
                 for (int n = i + 1; n < length; n++) {
-                    //checking each element to see if it is smallest in the array
-                    if (array[large].compareTo(array[n]) > 0) {
+                    //checking each element to see if it is largest  in the array
+                    if (array[n].compareTo(array[large]) > 0) {
                         large = n;
                     }
-                   Shape temp = array[large];
-                   array[large] = array[n];
-                   array[n] = temp;
                 }
+                   Shape temp = array[i];
+                   array[i] = array[large];
+                   array[large] = temp;
+                
             }
         }
         else 
         {
                         for (int i = 0; i < length - 1; i++) {
-                //small is assuming that the current index is the smallest number
+                //large is assuming that the current index is the largest number
                 int large= i;
                 //loop through the rest of the array and compare including the last element
                 for (int n = i + 1; n < length; n++) {
                     //checking each element to see if it is largest in the array
-                    if (compareBy(array[large],array[n], Comparetype)  > 0) {
+                    if (compareBy(array[n],array[large], Comparetype)  > 0) {
                         large = n;
                     }
-                   Shape temp = array[large];
-                   array[large] = array[n];
-                   array[n] = temp;
                 }
+                   Shape temp = array[i];
+                   array[i] = array[large];
+                   array[large] = temp;
+                
             }
         
         
