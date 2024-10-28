@@ -1,34 +1,39 @@
 package polygons;
 
-import java.text.DecimalFormat;
+// import java.text.DecimalFormat; // This import was unused so commented it out.
+// but is still here if we need it later.
 
-public class Cone extends Shape {
-
+public class Cone extends Shape 
+{
     double radius;
 
-    public Cone(double radius, double height) {
+    public Cone(double radius, double height) 
+    {
         super(height);
         this.radius = radius;
     }
 
-    public double getRadius() {
+    public double getRadius() 
+    {
         return radius;
     }
 
-    public void setRadius(double radius) {
+    public void setRadius(double radius) 
+    {
         this.radius = radius;
     }
 
     @Override
-    public double calcBaseArea() {
+    public double calcBaseArea() 
+    {
         double basearea = Math.PI * Math.pow(this.radius, 2);
         return basearea;
     }
 
     @Override
-    public double calcVolume() {
+    public double calcVolume() 
+    {
         double volume = (Math.PI * Math.pow(this.radius, 2) * this.height) / 3;
         return volume;
     }
-
 }

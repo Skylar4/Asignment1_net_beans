@@ -11,8 +11,8 @@ import polygons.Shape;
  * Bubble Sort algorithm based on the compare type.
  * 
  * @author benjaminmellott
+ * @param <T> extends Shape Class
  */
-
 public class BubbleSorter<T extends Shape>
 {
     private final String compareType;
@@ -31,12 +31,25 @@ public class BubbleSorter<T extends Shape>
         {
             for (int j = 0; j < length - i - 1; j++)
             {
-                if(array[j].compareTo(array[j + 1]) == 1)
+                if (compareType.equalsIgnoreCase("h"))
                 {
-                    T temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+                    if(array[j].compareTo(array[j + 1]) == -1)
+                    {
+                        T temp = array[j];
+                        array[j] = array[j+1];
+                        array[j+1] = temp;
+                    }
                 }
+                else
+                {
+                    if(array[j].Compare2(((array[j + 1])), compareType) == -1)
+                    {
+                        T temp = array[j];
+                        array[j] = array[j+1];
+                        array[j+1] = temp;
+                    }
+                }
+
             }
         }
     }
@@ -46,6 +59,4 @@ public class BubbleSorter<T extends Shape>
         BubbleSorter<T> sorter = new BubbleSorter<>(compareType, array);
         sorter.bubbleSort(array);
     }
-    
-    
 }
