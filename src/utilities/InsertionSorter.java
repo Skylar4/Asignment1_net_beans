@@ -11,26 +11,38 @@ import polygons.Shape;
  * 
  * @author robin
  */
-public class InsertionSorter {
-       
-            
-    public static <T extends Shape> void sort(T[] array){
-        
+public class InsertionSorter 
+{
+    public static <T extends Shape> void sort(T[] array, String compareType)
+    {
         int arraySize = array.length;
         
-        for (int i = 1; i < arraySize; i++){
-                int index = i ;
-                for (int j = i -1; j >= 0; j--){
-                    if (array[index].compareTo(array[j])<0){
-                    T temp = array[index];
-                    array[index] = array[j];
-                    array[j] = temp;
-                    index = j;
-                    }else{
-                        break;
+        for (int i = 1; i < arraySize; i++)
+        {
+            int index = i;
+            for (int j = i -1; j >= 0; j--)
+            {
+                if (compareType.equalsIgnoreCase("h"))
+                {
+                    if (array[index].compareTo(array[j]) > 0)
+                    {
+                        T temp = array[index];
+                        array[index] = array[j];
+                        array[j] = temp;
+                        index = j;
                     }
                 }
-        
-    }
+                else
+                {
+                    if ((array[index].Compare2(array[j], compareType)) > 0)
+                    {
+                        T temp = array[index];
+                        array[index] = array[j];
+                        array[j] = temp;
+                        index = j;
+                    }
+                }
+            }
+        }
     }     
 }

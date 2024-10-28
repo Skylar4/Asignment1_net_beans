@@ -58,7 +58,7 @@ public class AppDriver
     {
         String fileName = "shapes4.txt";
         String compareType = "a"; // Valid types for this are (h (height), v (volume), a (area))
-        String sortType = "b";
+        String sortType = "i";
 
         for (String arg : args) 
         {
@@ -100,7 +100,7 @@ public class AppDriver
             case "i" -> 
             {
                 System.out.println("Sorting by Insertion Sort algorithm");
-                InsertionSorter.sort(shapes);
+                InsertionSorter.sort(shapes, compareType);
             }
             case "q" -> 
             {

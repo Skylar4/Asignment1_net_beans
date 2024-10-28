@@ -35,8 +35,9 @@ public class RadixSorter<T extends Shape>
             count[value]++;
         }
 
-        for (int i = 1; i < 10; i++) {
-            count[i] += count[i - 1];
+        for (int i = 8; i >= 0; i--) 
+        {
+            count[i] += count[i + 1];
         }
 
         for (int i = n - 1; i >= 0; i--) {
