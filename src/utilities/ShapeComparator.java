@@ -45,10 +45,10 @@ public class ShapeComparator implements Comparator<Shape> {
     
     public static <T extends Shape> int compareBy(T shape1, T shape2, String compareType) {
         int comparisonResult;
-        if ("h".equals(compareType)) {
+        if ("h".equals(compareType.toLowerCase())) {
             comparisonResult = shape1.compareTo(shape2);
         } else {
-            ShapeComparator comparator = new ShapeComparator(compareType);
+            ShapeComparator comparator = new ShapeComparator(compareType.toLowerCase());
             comparisonResult = comparator.compare(shape1, shape2);
         }
         return comparisonResult;

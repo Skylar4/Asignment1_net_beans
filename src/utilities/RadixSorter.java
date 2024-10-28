@@ -35,16 +35,17 @@ public class RadixSorter<T extends Shape>
         return max;
     }
 
-    private void sortCounter(T[] arr, int n, int exp) {
-        T[] output = Arrays.copyOf(arr, n);
+    private <T extends Shape> void sortCounter(T[] arr, int n, int exp) {
+        Shape[] output = new Shape[n];
         //creates an array to hold the digits 0-9
         int[] count = new int[10];
         //fills the array with 0's
         Arrays.fill(count, 0);
+        
         //count occurances of each digit in the current range, 1's ,10;s ,100s etc
         for (int i = 0; i < n; i++) {
             //getting the value of the digit
-            int value = (int)((arr[i].getComparableValue(compareType) * 100) / exp) % 10;
+            int value = (int) (arr[i].getComparableValue(compareType) / exp) % 10;
             // increases the count of the specified digit by 1 
             count[value]++;
         }
@@ -53,10 +54,11 @@ public class RadixSorter<T extends Shape>
         {
             count[i] += count[i + 1];
         }
+        
         //filling the output array with the actual shapes in the spots indicated by the count array
         for (int i = n - 1; i >= 0; i--) {
             //again getting the number at the current digit
-            int value = (int)((arr[i].getComparableValue(compareType) * 100) / exp) % 10;
+            int value = (int)((arr[i].getComparableValue(compareType)) / exp) % 10;
             //put the shape into the output array at the spots indicated by the count array
             output[count[value] - 1] = arr[i];
             //deceease the value to ensure the next shape is placed next to it
