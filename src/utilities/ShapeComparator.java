@@ -23,26 +23,28 @@ public class ShapeComparator implements Comparator<Shape> {
     //height can be done in the compareTo in the shape class 
     @Override
     public int compare(Shape s1, Shape s2) {
+        double value1 = 0;
+        double value2 = 0;
+
         switch (compareType) {
             case "a":
-                double baseArea1 = s1.calcBaseArea();
-                double baseArea2 = s2.calcBaseArea();
-                return Double.compare(baseArea1, baseArea2);
+                value1 = s1.calcBaseArea();
+                value2 = s2.calcBaseArea();
+
             case "v":
-                double volume1 = s1.calcVolume();
-                double volume2 = s2.calcVolume();
-                return Double.compare(volume1, volume2);
-            default:
-                return 0;
+                value1 = s1.calcVolume();
+                value2 = s2.calcVolume();
         }
+
+        return Double.compare(value1, value2);
     }
-    
+
     public static <T extends Shape> void swap(T[] shapes, int index1, int index2) {
         T temp = shapes[index1];
         shapes[index1] = shapes[index2];
         shapes[index2] = temp;
     }
-    
+
     public static <T extends Shape> int compareBy(T shape1, T shape2, String compareType) {
         int comparisonResult;
         if ("h".equals(compareType.toLowerCase())) {
